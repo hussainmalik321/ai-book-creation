@@ -1,0 +1,32 @@
+/* Styling for code block components */
+.codeBlock {
+  background-color: var(--color-background-alt);
+  border: 1px solid var(--color-background-accent);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+}
+
+.code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: none;
+  padding: 0;
+  margin: 0;
+  tab-size: 2;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .codeBlock {
+    padding: var(--spacing-xl);
+    font-size: var(--font-size-base);
+  }
+}

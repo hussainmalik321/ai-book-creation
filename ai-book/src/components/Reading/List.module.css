@@ -1,0 +1,32 @@
+/* Styling for list components */
+.list {
+  margin: var(--spacing-lg) 0;
+  padding-left: var(--spacing-2xl);
+  color: var(--color-text-primary);
+}
+
+.list.ordered {
+  list-style-type: decimal;
+}
+
+.listItem {
+  margin-bottom: var(--spacing-sm);
+  line-height: var(--line-height-relaxed);
+}
+
+.listItem:last-child {
+  margin-bottom: 0;
+}
+
+/* Nested lists */
+.list .list {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .list {
+    padding-left: var(--spacing-3xl);
+  }
+}

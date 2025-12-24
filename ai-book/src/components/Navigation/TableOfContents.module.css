@@ -1,0 +1,119 @@
+/* Table of Contents styles */
+.tableOfContents {
+  margin: var(--spacing-xl) 0;
+  border: 1px solid var(--color-background-accent);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.tocToggle {
+  width: 100%;
+  padding: var(--spacing-lg);
+  background-color: var(--color-background-alt);
+  border: none;
+  text-align: left;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.tocToggle:hover {
+  background-color: var(--color-background);
+}
+
+.tocToggleText {
+  font-family: var(--font-family-ui);
+}
+
+.tocToggleIcon {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.tocToggleIcon.open {
+  transform: rotate(90deg);
+}
+
+.tocNav {
+  background-color: var(--color-background);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.tocNav.visible {
+  max-height: 500px; /* Adjust as needed */
+  overflow-y: auto;
+}
+
+.tocList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tocItem {
+  border-bottom: 1px solid var(--color-background-accent);
+}
+
+.tocItem:last-child {
+  border-bottom: none;
+}
+
+.tocLink {
+  display: block;
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+
+.tocLink:hover {
+  background-color: var(--color-background-alt);
+  color: var(--color-primary);
+}
+
+.tocLink.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  font-weight: 600;
+  position: relative;
+}
+
+.tocLink.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--color-primary-dark);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .tableOfContents {
+    position: sticky;
+    top: var(--spacing-xl);
+    align-self: start;
+    max-height: calc(100vh - 2 * var(--spacing-xl));
+    overflow-y: auto;
+  }
+
+  .tocNav {
+    max-height: none;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tableOfContents {
+    max-height: calc(100vh - 3 * var(--spacing-xl));
+  }
+}

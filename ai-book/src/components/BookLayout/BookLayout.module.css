@@ -1,0 +1,165 @@
+/* Book layout styles */
+.bookContainer {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--content-padding);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookHeader {
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-background-accent);
+}
+
+.landingHeader {
+  text-align: center;
+  padding: var(--spacing-3xl) 0;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.chapterHeader {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.chapterTitle h1 {
+  font-size: var(--font-size-2xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.chapterDescription {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  margin: 0;
+}
+
+.landingTitle h1 {
+  font-size: var(--font-size-4xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.bookBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chapterBody {
+  min-height: 70vh;
+}
+
+.landingBody {
+  min-height: 60vh;
+}
+
+.bookMain {
+  flex: 1;
+}
+
+.bookContent {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 var(--spacing-md);
+}
+
+/* Distraction-free layout */
+.bookContent :global(.markdown) {
+  max-width: 65ch;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Proper spacing for readability */
+.bookContent :global(.markdown) h1,
+.bookContent :global(.markdown) h2,
+.bookContent :global(.markdown) h3,
+.bookContent :global(.markdown) h4 {
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.bookContent :global(.markdown) p {
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.bookContent :global(.markdown) ul,
+.bookContent :global(.markdown) ol {
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-2xl);
+}
+
+.bookContent :global(.markdown) li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.bookContent :global(.markdown) blockquote {
+  margin: var(--spacing-lg) 0;
+  padding-left: var(--spacing-lg);
+  border-left: 4px solid var(--color-primary);
+}
+
+.bookContent :global(.markdown) pre {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-lg);
+}
+
+.bookContent :global(.markdown) code:not(:global(.prism-code)) {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-background-alt);
+  border-radius: var(--border-radius);
+}
+
+.bookFooter {
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-background-accent);
+  text-align: center;
+}
+
+.readingProgress {
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-background-accent);
+  margin-bottom: var(--spacing-lg);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.readingProgressBar {
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.copyright {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .bookContainer {
+    padding: calc(var(--content-padding) * 1.5);
+  }
+
+  .chapterTitle h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .landingTitle h1 {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bookContainer {
+    padding: calc(var(--content-padding) * 2);
+  }
+}

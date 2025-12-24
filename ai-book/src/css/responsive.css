@@ -1,0 +1,155 @@
+/* Mobile-first responsive styles for the AI Book Platform */
+
+/* Base styles (mobile first) */
+.book-container {
+  padding: var(--spacing-lg);
+}
+
+.book-content {
+  font-size: var(--font-size-base);
+}
+
+.book-content h1 {
+  font-size: var(--font-size-2xl);
+}
+
+.book-content h2 {
+  font-size: var(--font-size-xl);
+}
+
+.book-content h3 {
+  font-size: var(--font-size-lg);
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .book-container {
+    padding: var(--content-padding);
+  }
+
+  .book-content {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
+  }
+
+  .book-content h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .book-content h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .book-content h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  /* Enhanced navigation for larger screens */
+  .book-navigation {
+    padding: var(--spacing-xl) 0;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .book-container {
+    padding: calc(var(--content-padding) * 1.5);
+  }
+
+  .book-content {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    max-width: var(--content-max-width);
+  }
+
+  .book-content h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  .book-content h2 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .book-content h3 {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Immersive desktop layout */
+  .book-body {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--spacing-2xl);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .book-main-content {
+    order: 1;
+  }
+
+  .book-toc {
+    order: 2;
+    position: sticky;
+    top: var(--spacing-xl);
+    align-self: start;
+    height: fit-content;
+  }
+
+  /* Wider navigation on desktop */
+  .book-navigation {
+    max-width: var(--content-max-width);
+    margin: var(--spacing-xl) auto;
+  }
+}
+
+/* Large desktop styles */
+@media (min-width: 1400px) {
+  .book-container {
+    padding: calc(var(--content-padding) * 2);
+  }
+
+  .book-content {
+    font-size: var(--font-size-xl);
+  }
+
+  .book-content h1 {
+    font-size: var(--font-size-5xl);
+  }
+}
+
+/* Touch-friendly adjustments */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets for mobile devices */
+  .book-navigation a {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+  }
+
+  /* Increase tap targets for interactive elements */
+  button, .button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-primary: #000000;
+    --color-background: #ffffff;
+  }
+
+  [data-theme='dark'] {
+    --color-text-primary: #ffffff;
+    --color-background: #000000;
+  }
+}
