@@ -1,0 +1,11 @@
+# This file is for Hugging Face Spaces compatibility
+# For a full backend+frontend deployment, we'll create a proper Docker setup
+
+import os
+from backend.main import app
+
+# This allows Hugging Face to run the FastAPI app
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run(app, host="0.0.0.0", port=port)
