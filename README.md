@@ -1,3 +1,12 @@
+---
+title: AI-Powered Book Assistant
+emoji: 🤖
+colorFrom: blue
+colorTo: red
+sdk: docker
+pinned: false
+---
+
 # AI-Powered Book Assistant
 
 An AI-powered chatbot that answers questions about book content using Retrieval-Augmented Generation (RAG).
