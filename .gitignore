@@ -1,0 +1,74 @@
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+venv/
+.venv/
+.ENV/
+.python-version
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node.js (frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+.nuxt/
+.next/
+.vercel/
+ai-book/node_modules/
+ai-book/build/
+ai-book/.next/
+ai-book/.nuxt/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backend temp files
+backend/__pycache__/
+backend/src/__pycache__/
+backend/src/api/__pycache__/
+backend/src/core/__pycache__/
+backend/src/models/__pycache__/
+backend/src/services/__pycache__/
+
+# Test and temporary files
+*.log
+*.tmp
+*.temp
+.DS_Store
+*.user
+*.userprefs
+
+# Local configuration
+.local/
+
+# Hugging Face cache
+.huggingface/
+
+# Git
+.git/

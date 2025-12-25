@@ -210,4 +210,9 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
 
 ## Recent Changes
+- 002-rag-chatbot-integration: Added Python 3.11 (for FastAPI backend), JavaScript/TypeScript (for frontend React components) + FastAPI (backend), React (frontend), OpenAI SDK, Qdrant Client, Neon Postgres Client
 - 001-ai-book: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+
+## Active Technologies
+- Python 3.11 (for FastAPI backend), JavaScript/TypeScript (for frontend React components) + FastAPI (backend), React (frontend), OpenAI SDK, Qdrant Client, Neon Postgres Client (002-rag-chatbot-integration)
+- Qdrant Vector Database (for embeddings), Neon Serverless Postgres (for metadata and relations) (002-rag-chatbot-integration)

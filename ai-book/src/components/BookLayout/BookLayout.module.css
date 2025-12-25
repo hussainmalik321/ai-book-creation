@@ -1,6 +1,6 @@
 /* Book layout styles */
 .bookContainer {
-  max-width: var(--content-max-width);
+  max-width: var(--content-max-width-xl);
   margin: 0 auto;
   padding: var(--content-padding);
   min-height: 100vh;
@@ -113,6 +113,41 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--color-background-alt);
   border-radius: var(--border-radius);
+}
+
+.chatContainer {
+  margin-top: var(--spacing-xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-primary);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.chatContainer:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-primary-dark);
+}
+
+@media (min-width: 997px) {
+  .bookMain {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .bookContent {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .chatContainer {
+    flex: 0 0 350px;
+    margin-top: 0;
+    margin-left: var(--spacing-xl);
+  }
 }
 
 .bookFooter {

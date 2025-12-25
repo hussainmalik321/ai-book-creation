@@ -1,0 +1,128 @@
+# API Contract: AI-Powered Book Assistant
+
+## Chat Endpoints
+
+### POST /api/chat/query
+**Description**: Submit a query to the AI assistant
+
+**Request**:
+```json
+{
+  "query_text": "What is the main concept discussed in this chapter?",
+  "query_type": "GLOBAL_QA",
+  "selected_text": null,
+  "session_id": "session-123"
+}
+```
+
+**Query Type Options**:
+- `GLOBAL_QA`: General question about book content
+- `SELECTION_QA`: Question specifically about selected text
+
+**Response (Success)**:
+```json
+{
+  "response_id": "response-456",
+  "answer": "The main concept discussed is...",
+  "sources": [
+    {
+      "content_id": "chunk-789",
+      "title": "Chapter 3: Key Concepts",
+      "text": "The main concept is..."
+    }
+  ],
+  "confidence": 0.92,
+  "session_id": "session-123"
+}
+```
+
+**Response (Error)**:
+```json
+{
+  "error": "string",
+  "message": "Error description"
+}
+```
+
+**Validation**:
+- query_text: required, non-empty string
+- query_type: required, must be "GLOBAL_QA" or "SELECTION_QA"
+- selected_text: required when query_type is "SELECTION_QA", optional otherwise
+- session_id: optional, creates new session if not provided
+
+### POST /api/chat/query (Selection-based)
+**Description**: Submit a query specifically about selected text
+
+**Request**:
+```json
+{
+  "query_text": "Can you explain this concept in more detail?",
+  "query_type": "SELECTION_QA",
+  "selected_text": "The concept of retrieval-augmented generation...",
+  "session_id": "session-123"
+}
+```
+
+**Response**: Same as above, but sources will only reference the selected text
+
+### GET /api/chat/session/{session_id}
+**Description**: Get session information and history
+
+**Response**:
+```json
+{
+  "session_id": "session-123",
+  "created_at": "2025-12-25T10:00:00Z",
+  "last_activity": "2025-12-25T10:05:00Z",
+  "active": true,
+  "query_history": [
+    {
+      "query_id": "query-1",
+      "query_text": "What is RAG?",
+      "response_id": "response-1",
+      "answer": "Retrieval-Augmented Generation...",
+      "timestamp": "2025-12-25T10:01:00Z"
+    }
+  ]
+}
+```
+
+## Content Endpoints
+
+### GET /api/content/chapters
+**Description**: Get list of available chapters
+
+**Response**:
+```json
+{
+  "chapters": [
+    {
+      "id": "ch-1",
+      "title": "Introduction",
+      "sections": ["sec-1.1", "sec-1.2"]
+    }
+  ]
+}
+```
+
+### GET /api/content/chunk/{chunk_id}
+**Description**: Get specific content chunk by ID
+
+**Response**:
+```json
+{
+  "chunk_id": "chunk-789",
+  "title": "Chapter 3: Key Concepts",
+  "content": "The main concept is...",
+  "metadata": {
+    "chapter": "Chapter 3",
+    "section": "3.1",
+    "position": 1
+  }
+}
+```
+
+## Security
+- All endpoints require HTTPS
+- Rate limiting: 100 requests per hour per IP
+- Request size limit: 10KB for query text

@@ -5,7 +5,26 @@
       "Bash(.specify/scripts/bash/check-prerequisites.sh --json)",
       "Bash(.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
       "Bash(git rev-parse --git-dir)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh --json \"================================\nFEATURE SPECIFICATION\n================================\nFeature Name:\nIntegrated RAG Chatbot for Spec-Driven Book\n\nThis feature extends the existing spec-driven book system by embedding\na Retrieval-Augmented Generation \\(RAG\\) chatbot directly into the published book UI.\n\nThis is a PRODUCT FEATURE, not a demo or experiment.\n\n================================\nPRIMARY OBJECTIVE\n================================\nBuild a production-grade, embedded RAG chatbot that can:\n\n- Answer questions about the book''s content\n- Ground answers strictly in the book text\n- Optionally answer questions using ONLY user-selected text\n- Feel native to the book experience \\(not a floating toy widget\\)\n\n================================\nUSER EXPERIENCE GOALS\n================================\nThe chatbot must feel:\n\n- Context-aware\n- Trustworthy\n- Fast\n- Non-intrusive\n- Integrated into the reading flow\n\nThe chatbot must NOT feel like:\n- A generic AI chat popup\n- A third-party embed\n- A playground demo\n\n================================\nCORE CAPABILITIES\n================================\n\n1. Book-Aware Q&A\n- Users can ask questions about the book\n- Answers must be grounded in indexed book content\n- No hallucinated information outside the book corpus\n\n2. Selection-Based Q&A \\(CRITICAL\\)\n- User can select text inside the book\n- Ask a question specifically about the selected text\n- The chatbot must restrict context strictly to that selection\n\n3. Clear Source Grounding\n- The system must know what content it is allowed to use\n- No cross-chapter leakage when selection-mode is active\n\n================================\nTECHNOLOGY CONSTRAINTS\n================================\n\nMandatory stack:\n- Backend: FastAPI\n- LLM Interface: OpenAI Agents / ChatKit SDKs\n- Vector Store: Qdrant Cloud \\(Free Tier\\)\n- Relational DB: Neon Serverless Postgres\n- Frontend integration: Embedded into Docusaurus custom UI\n\nForbidden:\n- Monolithic backend logic\n- Tight coupling between UI and retrieval logic\n- Any proprietary closed RAG frameworks\n\n================================\nDATA & KNOWLEDGE MODEL\n================================\n\nKnowledge Sources:\n- Book chapters\n- Sections\n- Paragraph-level text chunks\n\nData principles:\n- Book content is the source of truth\n- Content is chunked, embedded, and indexed\n- Metadata must preserve:\n  - Chapter\n  - Section\n  - Position in book\n\nSelection mode must override global retrieval scope.\n\n================================\nSECURITY & BOUNDARIES\n================================\n- No user authentication required \\(public book\\)\n- No arbitrary file uploads\n- Rate-safe defaults\n- Backend must not expose raw DB credentials\n\n================================\nDEPLOYMENT ASSUMPTIONS\n================================\n- Backend deployed separately from frontend\n- Frontend communicates via HTTPS API\n- Book site remains fully static\n- Chatbot functionality depends on API availability\n\n================================\nSUCCESS CRITERIA\n================================\n\nThis feature is successful if:\n- The chatbot answers questions accur\" --number 1 --short-name \"rag-chatbot-integration\")",
+      "Bash(.specify/scripts/bash/setup-plan.sh --json)",
+      "Bash(git mv specs/001-rag-chatbot-integration specs/002-rag-chatbot-integration)",
+      "Bash(git branch -m 001-rag-chatbot-integration 002-rag-chatbot-integration)",
+      "Bash(.specify/scripts/bash/update-agent-context.sh claude)",
+      "Bash(python verify_implementation.py)",
+      "Bash(python test_connection.py)",
+      "Bash(uvicorn main:app --reload)",
+      "Bash(npm install)",
+      "Bash(find . -name \"*.py\" -path \"*/backend/*\" -exec grep -l \"query_full_book\\\\|QueryRequest\\\\|/api/query\" {} ;)",
+      "Bash(dir \"D:\\\\Web Development\\\\AI\\\\AI-Native Hackathon\\\\ai-book-creation-guide\\\\rag-backend\\\\app\\\\api\")",
+      "Bash(dir \"D:\\\\Web Development\\\\AI\\\\AI-Native Hackathon\\\\ai-book-creation-guide\\\\rag-backend\\\\app\\\\api\\\\routes\")",
+      "Bash(curl -X POST http://localhost:8000/api/chat/session -H \"Content-Type: application/json\" -d \"{}\")",
+      "Bash(npx kill-port 8000)",
+      "Bash(curl -s http://localhost:8000/docs)",
+      "Bash(curl -X POST http://localhost:8000/api/chat/query -H \"Content-Type: application/json\" -d \"{\"\"query_text\"\":\"\"test\"\", \"\"query_type\"\":\"\"GLOBAL_QA\"\", \"\"session_id\"\":\"\"test\"\"}\")",
+      "Bash(npx kill-port 3000)",
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/chat/session -H \"Content-Type: application/json\" -d \"{}\")",
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/chat/query -H \"Content-Type: application/json\" -d \"{\"\"query_text\"\":\"\"Hello\"\",\"\"query_type\"\":\"\"GLOBAL_QA\"\",\"\"session_id\"\":\"\"0aa727d5-67a0-4bbb-a5ce-61e009911df5\"\"}\")"
     ]
   }
 }
