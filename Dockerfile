@@ -28,4 +28,4 @@ COPY .env.example . 2>/dev/null || true
 EXPOSE 7860
 
 # Run the application - try backend/main.py first, fallback to root main.py
-CMD ["sh", "-c", "if [ -f backend/main.py ]; then cd backend && uvicorn main:app --host 0.0.0.0 --port 7860; else uvicorn main:app --host 0.0.0.0 --port 7860; fi"]
+CMD ["sh", "-c", "if [ -f backend/main.py ]; then cd backend && uvicorn main:app --host 0.0.0.0 --port 7860; else uvicorn main:app --host 0.0.0.0 --port 7860; fi"]# Force update

@@ -24,7 +24,13 @@
       "Bash(curl -X POST http://localhost:8000/api/chat/query -H \"Content-Type: application/json\" -d \"{\"\"query_text\"\":\"\"test\"\", \"\"query_type\"\":\"\"GLOBAL_QA\"\", \"\"session_id\"\":\"\"test\"\"}\")",
       "Bash(npx kill-port 3000)",
       "Bash(curl -s -X POST http://127.0.0.1:8001/api/chat/session -H \"Content-Type: application/json\" -d \"{}\")",
-      "Bash(curl -s -X POST http://127.0.0.1:8001/api/chat/query -H \"Content-Type: application/json\" -d \"{\"\"query_text\"\":\"\"Hello\"\",\"\"query_type\"\":\"\"GLOBAL_QA\"\",\"\"session_id\"\":\"\"0aa727d5-67a0-4bbb-a5ce-61e009911df5\"\"}\")"
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/chat/query -H \"Content-Type: application/json\" -d \"{\"\"query_text\"\":\"\"Hello\"\",\"\"query_type\"\":\"\"GLOBAL_QA\"\",\"\"session_id\"\":\"\"0aa727d5-67a0-4bbb-a5ce-61e009911df5\"\"}\")",
+      "Bash(git commit -m \"Fix Dockerfile - correct file copy order to ensure backend directory exists before pip install\")",
+      "Bash(hf upload hussain3241/ai-book-backend Dockerfile --repo-type space)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(hf upload:*)",
+      "Bash(cat:*)"
     ]
   }
 }
