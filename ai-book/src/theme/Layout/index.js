@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '@theme-original/Layout';
-import FloatingChatButton from '@site/src/components/ChatInterface/FloatingChatButton';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function LayoutWrapper(props) {
   return (
@@ -8,7 +8,12 @@ export default function LayoutWrapper(props) {
       <Layout {...props}>
         {props.children}
       </Layout>
-      <FloatingChatButton />
+      <BrowserOnly fallback={<div></div>}>
+        {() => {
+          const FloatingChatButton = require('@site/src/components/ChatInterface/FloatingChatButton').default;
+          return <FloatingChatButton />;
+        }}
+      </BrowserOnly>
     </>
   );
 }
