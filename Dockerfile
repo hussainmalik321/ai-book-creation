@@ -10,16 +10,22 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the entire application first to ensure directory structure
-COPY . .
+# Copy requirements first for better caching
+COPY requirements.txt .
 
-# Install Python dependencies from the backend directory
-WORKDIR /app/backend
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy backend directory
+COPY backend/ ./backend/
+
+# Copy root level files if they exist
+COPY main.py . 2>/dev/null || true
+COPY .env.example . 2>/dev/null || true
 
 # Expose port
 EXPOSE 7860
 
-# Run the application from backend directory on port 7860 (Hugging Face default)
-CMD ["sh", "-c", "cd /app/backend && uvicorn main:app --host 0.0.0.0 --port 7860"]
+# Run the application - try backend/main.py first, fallback to root main.py
+CMD ["sh", "-c", "if [ -f backend/main.py ]; then cd backend && uvicorn main:app --host 0.0.0.0 --port 7860; else uvicorn main:app --host 0.0.0.0 --port 7860; fi"]
