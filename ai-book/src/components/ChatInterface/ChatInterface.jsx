@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterface.css';
 
+// Backend API URL - use environment variable or default to Hugging Face Space
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'https://hussain3241-ai-book-backend.hf.space';
+
 const ChatInterface = ({ bookContent, showHeader = true }) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -13,7 +16,7 @@ const ChatInterface = ({ bookContent, showHeader = true }) => {
   useEffect(() => {
     const initSession = async () => {
       try {
-        const response = await fetch('http://localhost:8001/api/chat/session', {
+        const response = await fetch(`${API_BASE_URL}/api/chat/session`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -61,7 +64,7 @@ const ChatInterface = ({ bookContent, showHeader = true }) => {
         session_id: sessionId,
       };
 
-      const response = await fetch('http://localhost:8001/api/chat/query', {
+      const response = await fetch(`${API_BASE_URL}/api/chat/query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

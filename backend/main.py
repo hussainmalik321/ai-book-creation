@@ -7,19 +7,25 @@ from src.core.security import rate_limit_middleware
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.VERSION)
 
 # Add CORS middleware
-allowed_origins = settings.BACKEND_CORS_ORIGINS or [settings.FRONTEND_ORIGIN] if settings.FRONTEND_ORIGIN else ["*"]
-# Add Hugging Face Spaces origin for deployment
-allowed_origins.extend([
-    "https://*.hf.space",
-    "https://huggingface.co",
-    "https://*.huggingface.co"
-])
+allowed_origins = [
+    "https://ai-book-creation-phi.vercel.app",  # Production frontend
+    "http://localhost:3000",  # Local development
+    "http://localhost:3001",  # Alternative local port
+]
+
+# Add environment-specific origins
+if settings.FRONTEND_ORIGIN:
+    allowed_origins.append(settings.FRONTEND_ORIGIN)
+if settings.BACKEND_CORS_ORIGINS:
+    allowed_origins.extend(settings.BACKEND_CORS_ORIGINS)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,  # In production, specify exact origins
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Add rate limiting middleware
