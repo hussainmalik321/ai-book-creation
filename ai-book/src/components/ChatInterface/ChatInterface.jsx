@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatInterface.css';
+import config from '../../config';
 
-// Backend API URL - use environment variable or default to Hugging Face Space
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'https://hussain3241-ai-book-backend.hf.space';
+// Backend API URL from config
+const API_BASE_URL = config.backendUrl;
 
 const ChatInterface = ({ bookContent, showHeader = true }) => {
   const [messages, setMessages] = useState([]);
