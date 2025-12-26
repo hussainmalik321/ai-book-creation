@@ -112,7 +112,7 @@ class ContentService:
             results = []
             for hit in search_results:
                 results.append({
-                    "id": hit.id,
+                    "id": str(hit.id),  # Convert to string for Pydantic validation
                     "title": hit.payload.get("title", ""),
                     "content": hit.payload.get("content", ""),
                     "chunk_text": hit.payload.get("chunk_text", ""),
