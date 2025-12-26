@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 # Copy the entire application first to ensure directory structure
 COPY . .
 
-# Install Python dependencies
+# Install Python dependencies from the backend directory
 WORKDIR /app/backend
 RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
@@ -21,5 +21,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Expose port
 EXPOSE 7860
 
-# Run the application from backend directory
-CMD ["sh", "-c", "cd /app/backend && uvicorn main:app --host 0.0.0.0 --port $PORT"]
+# Run the application from backend directory on port 7860 (Hugging Face default)
+CMD ["sh", "-c", "cd /app/backend && uvicorn main:app --host 0.0.0.0 --port 7860"]
